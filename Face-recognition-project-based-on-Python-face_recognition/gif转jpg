@@ -1,0 +1,21 @@
+# 姓名 ：CLT
+# 开发时间 ；2021/4/23 0023 11:35
+from PIL import Image
+im = Image.open('F:\\olivettifaces.gif')
+im = im.convert('RGB')
+def iter_frames(im):
+    try:
+        i= 0
+        while 1:
+            im.seek(i)
+            imframe = im.copy()
+            if i == 0:
+                palette = imframe.getpalette()
+            else:
+                imframe.putpalette(palette)
+            yield imframe
+            i += 1
+    except EOFError:
+        pass
+for i, frame in enumerate(iter_frames(im)):
+    frame.save('image.jpg',**frame.info)
