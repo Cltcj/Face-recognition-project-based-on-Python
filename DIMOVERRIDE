@@ -1,0 +1,11 @@
+import cv2
+import numpy as np
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+print(image.shape)#(3016, 4032, 3)
+new_image_1=cv2.resize(image,(1000,1200),interpolation=cv2.INTER_AREA)
+cv2.imwrite('D:\\minote3\\200303\\shrink.jpg',new_image_1)
+print(new_image_1.shape)#(1200, 1000, 3)
+new_image_2=cv2.resize(image,None,fx=0.5,fy=0.6,interpolation=cv2.INTER_AREA)
+#fx=0.5,fy=0.6--->x、y轴比例因子
+print(new_image_2.shape)#(1810, 2016, 3)
+cv2.imwrite('D:\\minote3\\200303\\shrink_1.jpg',image)
