@@ -1,0 +1,19 @@
+import numpy as np
+matrix=np.array([
+    [1,2],
+    [3,4]])
+matrix_A=np.dot(matrix,matrix.T)
+#print(matrix_A)
+'''
+[[ 5 11]
+ [11 25]]
+'''
+
+U,s,V=np.linalg.svd(matrix_A)
+
+S=np.array([[s[0],0],
+            [0,s[1]]])
+print(s)
+
+matrix_1=np.dot(U,np.dot(S,V))
+print(matrix_1)
