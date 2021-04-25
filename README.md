@@ -2,7 +2,13 @@
 #From theory to practice
 #123.jpg为初始处理图片
 
-1.Brightness and contrast conversion
+1.Negative transformation:
+# negative
+In the earliest photographic film development, it refers to the image obtained after exposure and development.
+Negative operation is also called inverse color in many image processing software. Its light and shade are the opposite of the original image, and its color is the complementary color of the original image.
+#eg: Color A and color B are complementary colors. The sum of the two colors is 255, that is, the color of A point in the RGB image is (0,0,255), then the complementary color is (255,255,0).
+
+2.Brightness and contrast conversion:
 In general, an image processing operator is a function that takes one or more images as input data and produces an output image.
 # Image transformation can be divided into two types:
 # 1) Point operator: Based on pixel transformation, in this kind of image transformation, the corresponding output pixel value is calculated only based on the input pixel value (sometimes with some additional information).
@@ -11,7 +17,7 @@ In general, an image processing operator is a function that takes one or more im
 # g (I, j) = alpha * f (I, j) + beta, among them, the neutral position as (I, j), alpha represents the gain, beta represents the offset.The image brightness and contrast transformation is a kind of point operator, these two parameters can control the contrast and brightness respectively
 #note: image pixel value range [0,255]
 
-2.Noise processing
+3.Noise processing:
 # The less noise, the better the picture quality
 Image noise: that is, unnecessary or redundant information in image data
 # Robustness: A system or organization has the ability to resist or overcome adverse conditions. When an algorithm model is said to be robust, it indicates that some abnormal data have little or no impact on the overall performance of the algorithm model.
