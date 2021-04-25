@@ -1,0 +1,53 @@
+# 姓名 ： 池吕庭
+# 开发时间 ；2021/4/19 0019 14:51
+import numpy as np
+#对数据中心化(零均值化)处理
+def Centralization_function(data):
+    '''
+    :param data: data为{x1,x2...xn}的多维向量，设维度为m维的话，就可以将数据集写出m行n列的的矩阵A(m*n)
+    :return: 矩阵data-data中相应向量的平均数
+    '''
+    zero_mean_matrix=np.nanmean(data,axis=0)
+    #print(data-zero_mean_matrix)
+    #axis=0，那么输出矩阵是1行，求每一列的平均（按照每一行去求平均）；axis=1，输出矩阵是1列，求每一行的平均（按照每一列去求平均）。
+    return data-zero_mean_matrix
+
+# #基于常规特征值分解
+# def pca_conventional_eigenvalue(data,n):
+#     '''
+#     :param data: 初始数据集
+#     :param n:维数
+#     :return:返回降维的结果，Y=PX
+#     '''
+#     new_data=Centralization_function(data)#data-zero_mean_matrix
+#     C_mat=1/n*np.dot(new_data.T,new_data)#协方差矩阵C=1/n*B*B.T
+#     #print(cov_mat)
+#     eigenvalue_values,eigenvalue_vectors=np.linalg.eig(np.mat(C_mat))#C中特征值与特征向量
+#     #print(eigenvalue_values)
+#     #print(eigenvalue_vectors)
+#     value_indices=np.argsort(eigenvalue_values)#从小到大排序
+#
+#     #n_vectors=eigenvalue_vectors[:,value_indices[-1:-(n+1):-1]]# 最大的n个特征值对应的特征向量从最后一个元素到第一个元素复制一遍
+#     n_vectors=eigenvalue_vectors[:,value_indices[::-1]]
+#     #print(n_vectors)
+#     return new_data*n_vectors
+
+def pca_svd(data,k):
+    new_data=Centralization_function(data)
+    Cov_mat=1/k*np.dot(new_data.T,new_data)
+    U,s,V=np.linalg.svd(Cov_mat)
+    pc=np.dot(new_data,U)
+    return pc[:,0]
+def test():
+    data=np.array(
+        [[2.5,2.4],[0.5,0.7],[2.2,2.9],[1.9,2.2],[3.1,3.0],[2.3,2.7],[2,1.6],[1,1.1],[1.5,1.6],[1.1,0.9]]
+    )
+    result_eig=pca_svd(data,1)
+    print(result_eig)
+
+if __name__=='__main__':
+    test()
+
+
+
+
