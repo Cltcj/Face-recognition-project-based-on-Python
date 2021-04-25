@@ -1,0 +1,22 @@
+# 姓名 ： clt
+# 开发时间 ；2021/4/21 0021 8:51
+import cv2
+import numpy as np
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+height=image.shape[0]
+width=image.shape[1]
+#print(image.shape)
+negative_file=np.zeros((height,width,3))
+
+# Split the BGR image into three color channels. Note that the order of the color channels is blue, green, and red
+b,g,r=cv2.split(image)
+
+# to negatize processing, find each channel color complement
+r=255-r
+g=255-g
+b=255-b
+
+# Assigns the result of the processing to the previously generated 3D tensor
+negative_file[:,:,0]=b
+negative_file[:,:,1]=g
+negative_file[:,:,2]=r

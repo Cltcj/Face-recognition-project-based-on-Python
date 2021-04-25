@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+print(image.shape)
+#print(image)
+#cv2.imwrite('D:\\minote3\\200303\\clt.jpg',image)
+
+gray_image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+#cv2.cvtColor(p1,p2) 
+print(gray_image.shape)
+image_BGR=cv2.cvtColor(gray_image,cv2.COLOR_GRAY2BGR)
+print(image_BGR)

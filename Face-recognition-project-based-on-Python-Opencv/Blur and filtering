@@ -1,0 +1,29 @@
+# 姓名 ： CLT
+# 开发时间 ；2021/4/21 0021 16:22
+#滤波方法：中值滤波、双边滤波、高斯模糊、二维卷积
+import cv2
+import numpy as np
+import random
+
+impulse_noise_image=cv2.imread('D:\\minote3\\200303\\impulse_noise.jpg')
+gaussian_noise_image=cv2.imread('D:\\minote3\\200303\\gaussian_noise.jpg')
+
+#二维卷积
+convolution_kernel=np.ones((5,5),np.float32)/25
+#print(convolution_kernel)
+convolution_2d_image=cv2.filter2D(impulse_noise_image,-1,convolution_kernel)
+cv2.imwrite('D:\\minote3\\200303\\convolution.jpg',convolution_2d_image)
+
+#中值滤波
+median_filter_image=cv2.medianBlur(impulse_noise_image,5)
+cv2.imwrite('D:\\minote3\\200303\\median filter.jpg',median_filter_image)
+
+#高斯模糊
+gaussian_blur_image=cv2.GaussianBlur(gaussian_noise_image,(5,5),0)
+cv2.imwrite('D:\\minote3\\200303\\gaussian blur.jpg',gaussian_blur_image)
+
+#双边滤波
+#cv2.bilateralFilter(src,d,sigmaColor,sigmaSpace)
+#9代表邻域直径，两个参数75分别代表值域与空域标准差
+bilateral_filter_image=cv2.bilateralFilter(gaussian_noise_image,9,75,75)
+cv2.imwrite('D:\\minote3\\200303\\bilateral filter.jpg',bilateral_filter_image)

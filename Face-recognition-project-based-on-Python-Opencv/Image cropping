@@ -1,0 +1,6 @@
+import cv2
+import numpy as np
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+print(image.shape)
+new_image=image[100:3000,100:4000]#Trim from the 10th pixel to 100 pixels
+cv2.imwrite('D:\\minote3\\200303\\tailor.jpg',new_image)

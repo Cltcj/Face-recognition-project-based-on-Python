@@ -1,0 +1,30 @@
+# 姓名 ： CLT
+# 开发时间 ；2021/4/21 0021 16:22
+#滤波方法：中值滤波、双边滤波、高斯模糊、二维卷积
+import cv2
+import numpy as np
+
+#way1
+def convert_image1(image,alpha,beta):
+    blank=np.zeros(image.shape,image.dtype)
+    new_image1=cv2.addWeighted(image,alpha,blank,0,beta)
+    return new_image1
+#cv2.addWeighted()
+
+#way2
+def convert_image2(image,alpha,beta):
+    rows,cols,channel=image.shape#设置行，列，通道
+    new_image_2=np.zeros(image.shape,image.dtype)
+    print(image.shape)
+    for i in range(0,rows):#720
+        #print(i)
+        for j in range(0,cols):#480
+            for k in range(0,channel):#3
+                #np.clip()将数值限制在[0,255]之间，防止数字溢出
+                new_image_2[i,j,k]=np.clip(alpha*image[i,j,k]+beta,0,255)
+                print(new_image_2)
+    return new_image_2
+
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+cv2.imwrite('D:\\minote3\\200303\\converted_1.jpg',convert_image1(image,2.2,50))
+cv2.imwrite('D:\\minote3\\200303\\converted_2.jpg',convert_image2(image,2.2,50))

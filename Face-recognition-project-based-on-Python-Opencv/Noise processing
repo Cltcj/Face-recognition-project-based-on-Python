@@ -1,0 +1,50 @@
+    
+import numpy as np
+import  cv2
+import random
+
+#Add salt and pepper noise
+def impulse_noise(image,percentage):
+    '''
+    :param image:The original image
+    :param percentage:Proportion of salt and pepper noise
+    :return:Add salt and pepper
+    '''
+    rows,cols=image.shape
+    num=int(percentage*rows*cols)
+    #print(num)
+    for i in range(num):
+        x=random.randint(0,rows-1)
+        y=random.randint(0,cols-1)
+        if random.randint(0,1)==0:
+            image[x,y]=0
+        else:
+            image[x,y]=255
+    return image
+
+
+#Gaussian noise
+def gaussian_noise(image,mean,sigma,k):
+    '''
+    :param image:The original image
+    :param mean: The mean value of a Gaussian distribution of random numbers
+    :param sigma: σRepresents the standard deviation of the Gaussian distribution of random numbers
+    :param k: Coefficient, expressed as Gaussian noise intensity
+    :return:Returns the graph with Gaussian noise added
+    '''
+    rows,cols=image.shape
+    for i in range(rows):
+        for j in range(cols):  
+            value=int(image[i,j]+k*random.gauss(mu=mean,sigma=sigma))
+            value=np.clip(a_max=255,a_min=0,a=value)
+            image[i,j]=value
+    return image
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
+
+gray_image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+cv2.imwrite('gray.jpg',gray_image)
+gray_image_1=gray_image.copy()
+
+
+cv2.imwrite('D:\\minote3\\200303\\impulse_noise.jpg',impulse_noise(gray_image,0.3))
+cv2.imwrite('D:\\minote3\\200303\\gaussian_noise.jpg',gaussian_noise(gray_image_1,0,1,32))
