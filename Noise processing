@@ -23,7 +23,7 @@ def impulse_noise(image,percentage):
     return image
 
 
-#高斯噪声
+#Gaussian noise
 def gaussian_noise(image,mean,sigma,k):
     '''
     :param image:The original image
