@@ -22,6 +22,6 @@ def convert_image2(image,alpha,beta):
                 print(new_image_2)
     return new_image_2
 
-image=cv2.imread('D:\\minote3\\200303\\2003085500164.jpg')
+image=cv2.imread('D:\\minote3\\200303\\123.jpg')
 cv2.imwrite('D:\\minote3\\200303\\converted_1.jpg',convert_image1(image,2.2,50))
 cv2.imwrite('D:\\minote3\\200303\\converted_2.jpg',convert_image2(image,2.2,50))
