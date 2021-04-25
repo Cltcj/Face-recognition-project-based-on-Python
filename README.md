@@ -1,5 +1,6 @@
 # Face-recognition-project-based-on-Python
 #From theory to practice
+#123.jpg为初始处理图片
 
 1.Brightness and contrast conversion
 In general, an image processing operator is a function that takes one or more images as input data and produces an output image.
